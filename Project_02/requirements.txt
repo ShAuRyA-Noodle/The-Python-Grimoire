@@ -148,7 +148,7 @@ pytest>=9.0.3
 python-dateutil==2.9.0.post0
 python-dotenv>=1.2.2
 python-json-logger==3.3.0
-python-multipart>=0.0.27
+python-multipart>=0.0.29
 python-slugify==8.0.4
 pytokens==0.3.0
 pytz==2025.2
