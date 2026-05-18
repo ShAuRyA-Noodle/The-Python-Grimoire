@@ -195,7 +195,7 @@ tornado>=6.5.5
 tqdm==4.67.1
 traitlets==5.14.3
 typer-slim==0.21.1
-types-python-dateutil==2.9.0.20250822
+types-python-dateutil==2.9.0.20260518
 types-requests==2.32.4.20260107
 types-tqdm==4.67.0.20250809
 typing-inspection==0.4.1
