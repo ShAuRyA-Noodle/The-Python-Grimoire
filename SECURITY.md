@@ -1,6 +1,6 @@
 # Security Policy
 
-This is a personal learning grimoire — notebooks, mini-projects, and experiments. The pinned dependency set in `Project_02/requirements.txt` is large; every pin is `>=` the version that closes the matching Dependabot advisory, so a clean install gets a patched set.
+This is a personal learning grimoire of notebooks, mini-projects, and experiments. The pinned dependency set in `Project_02/requirements.txt` is large; every security-relevant pin is set to a version at or above the one that closes the matching Dependabot advisory, so a clean install gets a patched set.
 
 ## Reporting a Vulnerability
 

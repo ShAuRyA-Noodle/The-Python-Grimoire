@@ -1,0 +1,21 @@
+# macOS
+.DS_Store
+
+# Python bytecode
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Environments and secrets
+.env
+.venv/
+venv/
+env/
+
+# Distribution and build
+build/
+dist/
+*.egg-info/
