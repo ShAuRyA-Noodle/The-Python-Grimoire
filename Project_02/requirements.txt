@@ -169,7 +169,7 @@ segment-anything==1.0
 segmentation_models_pytorch==0.5.0
 Send2Trash==1.8.3
 sentry-sdk==2.63.0
-setuptools==80.10.2
+setuptools==83.0.0
 shellingham==1.5.4
 simsimd==6.5.16
 six==1.17.0
