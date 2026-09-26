@@ -37,18 +37,14 @@ import speech_recognition as sr
 import pyttsx3
 from gtts import gTTS
 from openai import OpenAI
-import music_library
+from Sheet_03 import get_song_url
 
 
 # ─────────────────────────────
 # Initialization
 # ─────────────────────────────
 recognizer = sr.Recognizer()
-tts_engine = pyttsx3.init()
-
-NEWS_API_KEY = "YOUR_NEWS_API_KEY_HERE"
-
-client = OpenAI()  # API key automatically read from environment variable
+NEWS_API_KEY = os.getenv("NEWS_API_KEY")
 
 
 # ─────────────────────────────
@@ -59,6 +55,7 @@ def speak_offline(text: str) -> None:
     Speak text using offline TTS (pyttsx3).
     Faster but less natural sounding.
     """
+    tts_engine = pyttsx3.init()
     tts_engine.say(text)
     tts_engine.runAndWait()
 
@@ -90,7 +87,7 @@ def ai_process(command: str) -> str:
     """
     Send a command to the OpenAI model and return its response.
     """
-    completion = client.chat.completions.create(
+    completion = OpenAI().chat.completions.create(
         model="gpt-4.1-mini",
         messages=[
             {"role": "system", "content": "You are Jarvis, a helpful assistant. Respond concisely."},
@@ -108,7 +105,7 @@ def process_command(command: str) -> None:
     """
     Route a recognized voice command to the appropriate action.
     """
-    command = command.lower()
+    command = command.lower().strip()
 
     if "open google" in command:
         webbrowser.open("https://google.com")
@@ -119,13 +116,20 @@ def process_command(command: str) -> None:
     elif "open linkedin" in command:
         webbrowser.open("https://linkedin.com")
 
-    elif command.startswith("play"):
-        song = command.split(" ")[1]
-        webbrowser.open(musicLibrary.music[song])
+    elif command.startswith("play "):
+        song_url = get_song_url(command.removeprefix("play ").strip())
+        if song_url:
+            webbrowser.open(song_url)
+        else:
+            speak("I couldn't find that song.")
 
     elif "news" in command:
+        if not NEWS_API_KEY:
+            speak("Set NEWS_API_KEY to hear the news.")
+            return
         response = requests.get(
-            f"https://newsapi.org/v2/top-headlines?country=in&apiKey={NEWS_API_KEY}"
+            f"https://newsapi.org/v2/top-headlines?country=in&apiKey={NEWS_API_KEY}",
+            timeout=10,
         )
 
         if response.status_code == 200:
