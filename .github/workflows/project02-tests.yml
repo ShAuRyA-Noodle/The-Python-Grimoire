@@ -1,0 +1,27 @@
+name: Project 02 tests
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  smoke:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-python@v7
+        with:
+          python-version: '3.11'
+      - name: Install PortAudio headers
+        run: sudo apt-get update && sudo apt-get install -y portaudio19-dev
+      - name: Install exercise dependencies
+        run: python -m pip install -r Project_02/requirements.txt
+      - name: Check Python syntax
+        run: python -m compileall -q Project_02
+      - name: Run voice assistant tests
+        run: python -m unittest discover -s Project_02 -p 'test_*.py' -v
