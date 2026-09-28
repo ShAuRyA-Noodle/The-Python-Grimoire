@@ -1,7 +1,7 @@
 # Voice assistant exercise (Sheet_01.py and Sheet_02.py).
 # Keep this list to the packages imported by the exercise. The previous
 # machine-wide freeze pulled in unrelated ML, notebook and build packages.
-anyio>=4.14.2,<5
+anyio>=4.15.1,<5
 gTTS==2.5.4
 openai>=2.43.0,<3
 pygame==2.6.1
